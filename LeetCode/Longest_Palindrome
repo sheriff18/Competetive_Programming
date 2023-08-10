@@ -1,0 +1,15 @@
+
+class Solution:
+    def longestPalindrome(self, s: str) -> int:
+        longest = 0
+        dic = Counter(s)
+        status = False
+        for key, value in dic.items():
+            if value % 2 == 0:
+                longest+=value
+            else:
+                status = True
+                longest+=value-1
+        if status:
+            longest+=1
+        return longest

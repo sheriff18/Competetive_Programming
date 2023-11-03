@@ -1,0 +1,51 @@
+
+
+
+# First Approach - O(n)
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        dic = {}
+
+        for i,a in enumerate(nums):
+            diff = target - a
+            if diff in dic:
+                return [dic[diff], i]
+            dic[a] = i
+        return [] 
+
+  # Second Approach - O(nlogn) and two pointer approach
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        nums = [(nums,i) for i,nums in enumerate(nums)]
+        nums.sort()
+        n = len(nums)
+        left = 0
+        right = n - 1
+
+        while left < right:
+            if nums[left][0] + nums[right][0] == target:
+                return [nums[left][1],nums[right][1]]
+            elif nums[left][0] + nums[right][0] < target:
+                left += 1
+            else:
+                right -= 1
+        return []
+
+  # Third Approach - O(n**2) brute force
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        output = []
+        n = len(nums)
+        i = 0
+        
+
+        for i in range(n):
+            for j in range(i+1,n):
+                if nums[i] + nums[j] == target:
+                    output.append(i)
+                    output.append(j)
+                    i += 1
+            output.sort()
+        return output
+
+            
